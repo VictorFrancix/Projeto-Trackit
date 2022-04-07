@@ -9,15 +9,16 @@ import Header from "./Header";
 import Habits from "./Habits";
 import GlobalStyle from "./../assets/globalStyle/";
 import UserContext from "./../assets/Context";
+import History from "./History";
 
 function App() {
-  const [visibility, setVisibility] = useState(false);
+  const [visivel, setVisivel] = useState(false);
   const [usuario, setUsuario] = useState({
     email: "",
     password: "",
     connected: false,
   });
-  const weekdays = [
+  const weekday = [
     {
       id: 0,
       name: "D",
@@ -47,12 +48,11 @@ function App() {
       name: "S",
     },
   ];
-  const [progress, setProgress] = useState(0);
-  const [logout, setLogout] = useState(false);
+  const [progressbar, setProgressbar] = useState(0);
 
 
-  function requestError(err, navigate) {
-    console.log(`${err.response.status} - ${err.response.statusText}`);
+  function Error(e, navigate) {
+    console.log(`${e.response.status} - ${e.response.statusText}`);
     alert("Um erro aconteceu, tente novamente");
     navigate("/");
   }
@@ -62,16 +62,14 @@ function App() {
       <GlobalStyle />
       <UserContext.Provider
         value={{
-          visibility,
-          setVisibility,
+          visivel,
+          setVisivel,
           usuario,
           setUsuario,
-          requestError,
-          progress,
-          setProgress,
-          logout,
-        setLogout,
-        weekdays
+          Error,
+          progressbar,
+          setProgressbar,
+        weekday
       }}
       >
         <BrowserRouter>
@@ -81,6 +79,7 @@ function App() {
             <Route path ="/cadastro" element ={<SignUp />} />
             <Route path="/hoje" element={<Today />} />
             <Route path="/habitos" element={<Habits />} />
+            <Route path="/historico" element={<History />} />
           </Routes>
           <Menu />
         </BrowserRouter>

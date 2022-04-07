@@ -9,7 +9,7 @@ import Habit from "./Habit";
 import NewHabit from "./HabitNew";
 
 function Habits() {
-  let { setVisibility, usuario, requestError } = useContext(UserContext);
+  let { setVisivel, usuario, Error } = useContext(UserContext);
   const [habits, setHabits] = useState(["empty"]);
   const [create, setCreate] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ function Habits() {
   };
 
   useEffect(() => {
-    setVisibility(true);
+    setVisivel(true);
     requestHabits();
   }, []);
 
@@ -37,7 +37,7 @@ function Habits() {
     promise.then((response) => {
       setHabits(response.data);
     });
-    promise.catch((err) => requestError(err, navigate));
+    promise.catch((err) => Error(err, navigate));
   }
 
   function createHabit(habit) {

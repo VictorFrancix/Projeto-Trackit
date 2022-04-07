@@ -2,18 +2,18 @@ import styled from "styled-components";
 import { BsCheckSquareFill } from "react-icons/bs";
 import axios from "axios";
 
-function TodayHabit({ habit, config, requestTodayHabits }) {
+function TodayHabit({ habit, config, requestHabits }) {
   const { name, done, currentSequence, highestSequence, id } = habit;
 
   function toggleHabit(type) {
     const CHECK_URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/${type}`;
     const promise = axios.post(CHECK_URL, {}, config);
     promise.then(() => {
-      requestTodayHabits();
+      requestHabits();
     });
     promise.catch((err) => {
       console.log(`${err.response.status} - ${err.response.statusText}`);
-      alert("Um erro aconteceu, tente novamente");
+      alert("Algo aconteu, tente novamente");
     });
   }
 

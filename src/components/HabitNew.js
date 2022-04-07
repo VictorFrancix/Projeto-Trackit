@@ -5,7 +5,7 @@ import { ThreeDots } from "react-loader-spinner";
 import UserContext from "./../assets/Context";
 
 function NewHabit({ create, setCreate, loading, setLoading, createHabit }) {
-  const { weekdays } = useContext(UserContext);
+  const { weekday } = useContext(UserContext);
   const [newHabit, setNewHabit] = useState({
     name: "",
     days: [],
@@ -54,7 +54,7 @@ function NewHabit({ create, setCreate, loading, setLoading, createHabit }) {
           disabled={loading}
         />
         <div className="days">
-          {weekdays.map((day) => {
+          {weekday.map((day) => {
             return (
               <Day
                 key={day.id}

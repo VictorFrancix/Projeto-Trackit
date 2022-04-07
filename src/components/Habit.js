@@ -5,7 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import UserContext from "./../assets/Context";
 
 function Habit({ habit, deleteHabit }) {
-  const { weekdays } = useContext(UserContext);
+  const { weekday } = useContext(UserContext);
 
   const { name, id, days } = habit;
 
@@ -20,7 +20,7 @@ function Habit({ habit, deleteHabit }) {
         }}
       />
       <div>
-        {weekdays.map((day) => {
+        {weekday.map((day) => {
           return (
             <Div
               key={day.id}

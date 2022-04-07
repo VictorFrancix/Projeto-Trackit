@@ -8,12 +8,12 @@ import UserContext from "./../assets/Context";
 import logo from "./../assets/images/logo.png";
 
 function Login() {
-  const { setVisibility, usuario, setUsuario } = useContext(UserContext);
+  const { setVisivel, usuario, setUsuario } = useContext(UserContext);
   const [login, setLogin] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  setVisibility(false);
+  setVisivel(false);
 
   const URL =
     "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";

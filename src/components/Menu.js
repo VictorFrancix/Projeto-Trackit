@@ -7,9 +7,9 @@ import "react-circular-progressbar/dist/styles.css";
 import UserContext from "../assets/Context";
 
 function Menu() {
-  const { visibility, progress } = useContext(UserContext);
+  const { visivel, progress } = useContext(UserContext);
 
-  return visibility ? (
+  return visivel ? (
     <Footer>
       <Link to="/habitos">Hábitos</Link>
       <Link to="/hoje" className="hoje">

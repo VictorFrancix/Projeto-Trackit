@@ -9,7 +9,7 @@ import TodayHabit from "./TodayHabit";
 import "dayjs/locale/pt-br";
 
 function Today() {
-  let { setVisibility, progress, setProgress, usuario, requestError, logout } =
+  let { setVisivel, progressbar, setProgressbar, usuario, Error, logout } =
     useContext(UserContext);
   const [today, setToday] = useState(["empty"]);
   const navigate = useNavigate();
@@ -29,36 +29,36 @@ function Today() {
   date = date[0].toUpperCase() + date.substr(1);
 
   useEffect(() => {
-    setVisibility(true);
-    requestTodayHabits();
+    setVisivel(true);
+    requestHabits();
   }, []);
 
-  function updateProgress(today) {
+  function updateProgressBar(today) {
     if (today.length > 0 && today[0] !== "empty") {
       const todayDone = today.filter((habit) => habit.done === true);
       const currentProgress = (todayDone.length / today.length) * 100;
-      setProgress(currentProgress);
+      setProgressbar(currentProgress);
     }
   }
 
-  function requestTodayHabits() {
+  function requestHabits() {
     const promise = axios.get(URL, config);
     promise.then((response) => {
       setToday(response.data);
-      updateProgress(response.data);
+      updateProgressBar(response.data);
     });
-    promise.catch((err) => requestError(err, navigate));
+    promise.catch((err) => Error(err, navigate));
   }
 
   return today[0] === "empty" ? (
     <></>
   ) : (
-    <Main color_p={progress === 0 ? "#BABABA" : "var(--green)"} logout = {logout}>
+    <Main color_p={progressbar === 0 ? "#BABABA" : "var(--green)"} logout = {logout}>
       <h1>{date}</h1>
       <p>
-        {progress === 0
+        {progressbar === 0
           ? "Nenhum hábito concluído ainda"
-          : `${progress.toFixed(0)}% dos hábitos concluídos`}
+          : `${progressbar.toFixed(0)}% dos hábitos concluídos`}
       </p>
       <div>
         {today.length > 0 ? (
@@ -68,7 +68,7 @@ function Today() {
                 habit={habit}
                 key={habit.id}
                 config={config}
-                requestTodayHabits={requestTodayHabits}
+                requestHabits={requestHabits}
               />
             );
           })

@@ -6,7 +6,7 @@ import UserContext from "./../assets/Context";
 import trackit from "./../assets/images/TrackIt.png";
 
 function Header() {
-  let { visibility, usuario, setUsuario } = useContext(UserContext);
+  let { visivel, usuario, setUsuario } = useContext(UserContext);
   const navigate = useNavigate();
   
   if(localStorage.getItem("usuario") !== null){
@@ -25,7 +25,7 @@ function Header() {
     navigate("/");
   }
 
-  return visibility ? (
+  return visivel ? (
     <Div>
       <img src={trackit} alt="TrackIt" />
       <div>
