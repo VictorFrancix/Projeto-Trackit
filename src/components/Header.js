@@ -3,20 +3,20 @@ import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 
 import UserContext from "./../assets/Context";
-import trackit from "./../assets/midias/TrackIt.png";
+import trackit from "./../assets/images/TrackIt.png";
 
 function Header() {
   let { visibility, usuario, setUsuario } = useContext(UserContext);
   const navigate = useNavigate();
   
-  if(localStorage.getItem("user") !== null){
-    user = JSON.parse(localStorage.getItem("user"));
+  if(localStorage.getItem("usuario") !== null){
+    usuario = JSON.parse(localStorage.getItem("usuario"));
   } 
   
   const image = usuario !== null ? usuario.image : "";
 
   function Logout(){
-    localStorage.removeItem("user");
+    localStorage.removeItem("usuario");
     setUsuario({
       email: "",
       password: "",
@@ -29,9 +29,8 @@ function Header() {
     <Div>
       <img src={trackit} alt="TrackIt" />
       <div>
-        <p> Olá, {user.name} </p>
-        <button onClick={Logout}>Sair</button>
-        <img className = "perfil" src={image} alt="imagem" />
+        <p> Olá, {usuario.name} </p>
+        <img className = "perfil" src={image} alt="imagem" onClick={Logout} />
 
       </div>
     </Div>
@@ -60,12 +59,18 @@ const Div = styled.header`
     width: 51px;
     height: 51px;
     border-radius: 98.5px;
+    margin-left: 20px;
   }
+  .perfil:hover{
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+  }
+  
   div{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 130px;
+
   }
   button{
     width: fit-content;
@@ -73,6 +78,13 @@ const Div = styled.header`
     border: none;
     color: #FFFFFF;
     font-size: 22px;
+    margin-left: 20px;
+  }
+  p{
+      font-family: "Lexend Deca", sans-serif;
+      color: #FFFFFF;
+      margin-left: 40px;
+      font-size: 22px;
   }
 `;
 

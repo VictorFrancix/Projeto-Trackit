@@ -18,12 +18,6 @@ function Login() {
   const URL =
     "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
 
-  useEffect(() => {
-    if (Object.keys(login).length !== 0 && login.connected === true) {
-      localStorage.setItem("Usuario", JSON.stringify(login));
-    }
-  }, [login]);
-
   function requestAcess({ email, password, connected }) {
     setLoading(true);
     const loginData = {

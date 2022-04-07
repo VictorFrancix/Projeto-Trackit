@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Today from "./Home";
+import Header from "./Header";
 import GlobalStyle from "./../assets/globalStyle/";
 import UserContext from "./../assets/Context";
 
@@ -14,6 +16,7 @@ function App() {
     connected: false,
   });
   const [progress, setProgress] = useState(0);
+  const [logout, setLogout] = useState(false);
 
 
   function requestError(err, navigate) {
@@ -33,14 +36,17 @@ function App() {
           setUsuario,
           requestError,
           progress,
-          setProgress
-        }}
+          setProgress,
+          logout,
+        setLogout
+      }}
       >
         <BrowserRouter>
-        
+          <Header />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path ="/cadastro" element ={<SignUp />} />
+            <Route path="/hoje" element={<Today />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
