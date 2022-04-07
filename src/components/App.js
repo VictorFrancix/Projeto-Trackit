@@ -4,6 +4,7 @@ import { useState } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Today from "./Home";
+import Menu from "./Menu.js";
 import Header from "./Header";
 import GlobalStyle from "./../assets/globalStyle/";
 import UserContext from "./../assets/Context";
@@ -48,6 +49,7 @@ function App() {
             <Route path ="/cadastro" element ={<SignUp />} />
             <Route path="/hoje" element={<Today />} />
           </Routes>
+          <Menu />
         </BrowserRouter>
       </UserContext.Provider>
     </>
