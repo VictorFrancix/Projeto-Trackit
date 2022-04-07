@@ -4,11 +4,11 @@ import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-import usuarioContext from "./../assets/Context";
+import UserContext from "./../assets/Context";
 import logo from "./../assets/images/logo.png";
 
 function Login() {
-  const { setVisibility, usuario, setUsuario } = useContext(usuarioContext);
+  const { setVisibility, usuario, setUsuario } = useContext(UserContext);
   const [login, setLogin] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function Login() {
     }
   }, [login]);
 
-  function requestLogin({ email, password, connected }) {
+  function requestAcess({ email, password, connected }) {
     setLoading(true);
     const loginData = {
       email,
@@ -43,15 +43,15 @@ function Login() {
     });
   }
 
-  function sendInputData(e) {
+  function sendInput(e) {
     e.preventDefault();
-    requestLogin(usuario);
+    requestAcess(usuario);
   }
 
   return (
     <Div>
       <img src={logo} alt="Logo" />
-      <form onSubmit={(e) => sendInputData(e)}>
+      <form onSubmit={(e) => sendInput(e)}>
         <input
           type="email"
           placeholder="email"
@@ -86,28 +86,31 @@ const Div = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+
   img {
     width: 180px;
+    margin-bottom: 35px;
+    margin-top: -100px;
   }
+
   form > div {
     display: flex;
     align-items: center;
     width: 100%;
   }
-  #keepConnected {
-    width: 18px;
-    margin-right: 15px;
-  }
+
   form label {
     font-family: "Lexend Deca", sans-serif;
     color: var(--gray);
   }
+
   span {
     color: var(--light-blue);
     font-size: 14px;
     line-height: 17px;
     text-decoration-color: var(--light-blue);
   }
+
   a:visited {
     text-decoration-color: var(--light-blue);
   }
